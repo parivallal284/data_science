@@ -4,7 +4,6 @@ import boto3
 import pandas as pd
 from pyathena import connect
 
-
 class AthenaQuery(object):
     """A AthenaQuery for manipulation of s3 data through Athena service
 
@@ -13,10 +12,10 @@ class AthenaQuery(object):
         athena_bucket_path: An string representing the athena bucket path
     """
 
-    def __init__(self, aws_region_name, athena_bucket_path):
+    def __init__(self):
         """Return a new AthenaQuery object."""
-        self.aws_region_name = aws_region_name
-        self.athena_bucket_path = athena_bucket_path
+        self.aws_region_name = "ap-southeast-1"
+        self.athena_bucket_path = "s3://aws-athena-query-results-358002497134-ap-southeast-1/"
 
     def connect(self):
         self.athena_conn, self.athena_cursor = self.connect_to_athena()
@@ -33,7 +32,15 @@ class AthenaQuery(object):
         session = boto3.session.Session()
         s3_client = boto3.client('s3')
         return s3_client
-
+    
+    def query(self, query, print_debug_messages = False):
+        """
+        Assume that this doesn't respect data types / returns everything as object
+        
+        Returns a pandas dataframe
+        """
+        return self.query_athena_via_s3_to_dataframe(query, self.athena_cursor, self.boto_s3_client)
+    
     def query_athena_via_s3_to_dataframe(self, query, athena_cursor, boto_s3_client, print_debug_messages=False):
         """
         This is a lot faster than using the cursors etc of classic python db querying.

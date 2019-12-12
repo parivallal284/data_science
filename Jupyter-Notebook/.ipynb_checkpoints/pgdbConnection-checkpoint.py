@@ -7,10 +7,10 @@ def get_connection():
     if not _connection:
         # Enter the values for you database connection
         dsn_database = "data_pier"  # e.g. "compose"
-        dsn_hostname = "data-pier-staging.cl8qfdl47mtr.ap-southeast-1.rds.amazonaws.com"  # e.g.: "aws-us-east-1-portal.4.dblayer.com"
+        dsn_hostname = "data-pier-production.cl8qfdl47mtr.ap-southeast-1.rds.amazonaws.com"  # e.g.: "aws-us-east-1-portal.4.dblayer.com"
         dsn_port = "5432"  # e.g. 11101
-        dsn_uid = "data_team"  # e.g. "admin"
-        dsn_pwd = "Z1QxYKXO9qjnXQwNVZlmofAWRjMth1nx"  # e.g. "xxx"
+        dsn_uid = "pari"  # e.g. "admin"
+        dsn_pwd = "ja5DAmTK8hD3zuPpnNaySJJcgYxnLGJD"  # e.g. "xxx"
         try:
             conn_string = "host=" + dsn_hostname + " port=" + dsn_port + " dbname=" + dsn_database + " user=" + dsn_uid + " password=" + dsn_pwd
             print("Connecting to database\n  ->%s" % (conn_string))
@@ -20,4 +20,5 @@ def get_connection():
             print("Unable to connect to the database.%s" % e)
     return _connection
 
-
+if __name__ == '__main__':
+    get_connection()
