@@ -10,7 +10,7 @@ def get_connection():
         dsn_hostname = "data-pier-production.cl8qfdl47mtr.ap-southeast-1.rds.amazonaws.com"  # e.g.: "aws-us-east-1-portal.4.dblayer.com"
         dsn_port = "5432"  # e.g. 11101
         dsn_uid = "pari"  # e.g. "admin"
-        dsn_pwd = "ja5DAmTK8hD3zuPpnNaySJJcgYxnLGJD"  # e.g. "xxx"
+        dsn_pwd = "<need to paste actual pwd>"  # e.g. "xxx"
         try:
             conn_string = "host=" + dsn_hostname + " port=" + dsn_port + " dbname=" + dsn_database + " user=" + dsn_uid + " password=" + dsn_pwd
             print("Connecting to database\n  ->%s" % (conn_string))
